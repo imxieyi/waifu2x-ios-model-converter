@@ -1,0 +1,3 @@
+[submodule "esrgan_old"]
+	path = esrgan_old
+	url = https://github.com/imxieyi/ESRGAN.git

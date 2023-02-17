@@ -1,0 +1,147 @@
+models:
+- name: "AnimeSharp 4x"
+  type: esrgan_old
+  file: "./torch_models/4x-AnimeSharp.pth"
+  sha256: e7a7de2dafd7331c1992862bbbcd9e9712a9f9f8e6303f0aaa59b4341d359bab
+  scale: 4
+  description: "Anime or Text"
+  author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "AnimeSharp Lite 4x"
+  type: esrgan_old_lite
+  file: "./torch_models/4x-AnimeSharp-lite.pth"
+  sha256: a0a224521dcc547768e8442e83b68f98f485b3cbcc8bd207a6284fff6636329c
+  scale: 4
+  description: "Anime"
+  author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "UltraSharp 4x"
+  type: esrgan_old
+  file: "./torch_models/4x-UltraSharp.pth"
+  sha256: a5812231fc936b42af08a5edba784195495d303d5b3248c24489ef0c4021fe01
+  scale: 4
+  description: "Universal Upscaler"
+  author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "NMKD Siax (\"CX\") 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKD-Siax_200k.pth"
+  sha256: 560424d9f68625713fc47e9e7289a98aabe1d744e1cd6a9ae5a35e9957fd127e
+  scale: 4
+  description: "Universal upscaler for clean and slightly compressed images"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD Jaywreck3 Lite"
+  type: esrgan_old_lite
+  file: "./torch_models/1x_NMKD-Jaywreck3-Lite_320k.pth"
+  sha256: 3b2654a3bfa6e07bdebde48414d69b89ee3a1d1516ff9b26c3f4c6ee14f7d3f0
+  scale: 1
+  description: "Restore JPEG compression"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD Jaywreck3 Soft Lite"
+  type: esrgan_old_lite
+  file: "./torch_models/1x_NMKD-Jaywreck3-Soft-Lite_320k.pth"
+  sha256: bbd1b6e9002ad9cbb4c5049850a361e110b8ed0ae22f5ed0fb49ddf5a6951f53
+  scale: 1
+  description: "Restore JPEG compression"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "DeGif 2x"
+  type: esrgan_old
+  file: "./torch_models/2x_NMKD-DeGIF_210000_G.pth"
+  sha256: a1c4aad3eb19894afda5dcc12982541ce15f79bd47916137cbeb26e702040626
+  scale: 2
+  description: "GIF Restoration"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "4x eula digimanga bw v1"
+  type: esrgan_old
+  file: "./torch_models/4x_eula_digimanga_bw_v1_860k.pth"
+  sha256: a3ba78a589cf2f2c39fe77cf3f472173cdcb3ade7dcc77ee5d1cd266d733e3d3
+  scale: 4
+  description: "Manga"
+  author: "end user license agreement#9756"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "4x eula digimanga bw v2 (Monochrome)"
+  type: esrgan_old
+  file: "./torch_models/4x_eula_digimanga_bw_v2_nc1_307k.pth"
+  sha256: 0c3ff9f7b4fc11b21e1262bca06efada0b0723436623db5e2af37fa2291cb750
+  scale: 4
+  monochrome: true
+  cuda: true
+  description: "Manga"
+  author: "end user license agreement#9756"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "ReFocus V3"
+  type: esrgan_old
+  file: "./torch_models/1x_ReFocus_V3_140000_G.pth"
+  sha256: 94d8f38726c7abaa83a3fad27c01863ba961f76a995d8541c173eb3195062547
+  scale: 1
+  description: "DeBlur, ReFocus, Sharpen Manga, Anime and cartoon style images, but will work on real life images too."
+  author: "[Twittman](https://upscale.wiki/wiki/User:Twittman)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "Realistic Rescaler 4x"
+  type: real_esrgan
+  file: "./torch_models/4x_RealisticRescaler_100000_G.pth"
+  sha256: 7381a1229143c9301a94421b610d95eb312e2555743cc9e80099a0e15ac5bd3b
+  scale: 4
+  description: "This model was made to upscale realistic low-res textures that are compressed by either JPEG or BC1. From my testing, this works rather well on realistic GameCube textures such as the ones from Shrek Extra Large and the board textures from Mario Party 4. This model could also work on some real life images, especially the ones that are taken outdoors."
+  author: "Mutin Choler"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "Pixel Perfect V4 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_PixelPerfectV4_137000_G.pth"
+  sha256: 52bcda86effc93e07d868036f53dd2f4a38016cdd636b66ebbf6c4525223eb5f
+  scale: 4
+  description: "Sprite Upscaler"
+  author: "Mutin Choler"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "Anime Undeint"
+  type: real_esrgan_compact
+  file: "./torch_models/1x_AnimeUndeint_Compact_130k_net_g.pth"
+  sha256: f8b2b98c4e5dd3989b836414e2624e0795d74a8eba44e32cba6d18cce181140c
+  scale: 1
+  description: "This model corrects jagged lines on animation that has been deinterlaced. It handles simple line doubling, line interpolation, and even Yadif-style artifacts. It can also handle sources that were resized after deinterlacing, for example resizing from ntsc to pal resolutions. If a source has been upscaled after deinterlacing, it will need to be downsized before applying this model."
+  author: "Zarxrax"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "Fabric 4x"
+  type: esrgan_old
+  file: "./torch_models/4x-Fabric.pth"
+  sha256: 4a4c7924dfa830aed4dfd1126b1a7ee64a6611260edd03da79e3de842e52024a
+  scale: 4
+  description: "This model set upscales fabric or cloth textures (works on cats too!). The Alt model is just an earlier iteration version. It may work better on some images.The images need to be minimally compressed or passed through a decompression model first. It works with DDS compression though."
+  author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "Face Focus 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_face_focus_275k.pth"
+  sha256: a5b0546243a01f98ae63faaa691351be55416bb723271fb4f5147548b8c0b613
+  scale: 4
+  description: "Face De-blur - slightly out of focus / blurred images of faces. It is aimed at faces / hair"
+  author: "[LyonHrt](https://upscale.wiki/wiki/User:LyonHrt"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "FatePlus lite 4x"
+  type: esrgan_old_lite
+  file: "./torch_models/4x-FatePlus-lite.pth"
+  sha256: 959c8d9c39e57092d02cb90d82ad1a8d9297cd57d59e43c0243bea2c9eae83da
+  scale: 4
+  description: "Anime PSP games, Fate Extra\n\nThis model was trained as a favor to Demon and the Fate Extra community. It leaves a nice grain on the images and upscales lines and details accurately without looking odd. This model works on most anime-style PSP games. Enjoy! It works best on content with dithering and quantization."
+  author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
