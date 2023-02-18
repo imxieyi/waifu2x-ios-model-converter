@@ -75,10 +75,8 @@ torch_model = None
 input_tensor = None
 output_tensor = None
 
-ram_gb = psutil.virtual_memory().total / (1024 ** 3)
-
 device = torch.device('cpu')
-if platform.system() == 'Darwin' and ram_gb > 20 and torch.backends.mps.is_available():
+if platform.system() == 'Darwin' and torch.backends.mps.is_available():
     device = torch.device('mps')
     logger.info('Using torch device mps')
 elif torch.cuda.is_available():
@@ -86,9 +84,6 @@ elif torch.cuda.is_available():
     logger.info('Using torch device cuda')
 else:
     logger.info('Using torch device cpu, please be patient')
-
-if ram_gb < 16:
-    logger.warning('Conversion may fail due to less than 16GB RAM')
 
 logger.info('Creating model architecture')
 channels = 3
@@ -143,7 +138,7 @@ if args.monochrome:
 logger.info('Tracing model, will take a long time and a lot of RAM')
 torch_model.eval()
 torch_model = torch_model.to(device)
-example_input = torch.zeros(1, 3, args.input_size, args.input_size)
+example_input = torch.zeros(1, 3, 64, 64)
 example_input = example_input.to(device)
 traced_model = torch.jit.trace(torch_model, example_input)
 out = traced_model(example_input)
@@ -156,10 +151,13 @@ if args.scale != output_size / input_size:
     sys.exit(-1)
 
 logger.info('Converting to Core ML')
+input_shape = [1, 3, args.input_size, args.input_size]
+output_size = args.input_size * args.scale
+output_shape = [1, 3, output_size, output_size]
 model = ct.convert(
     traced_model,
     convert_to="mlprogram",
-    inputs=[ct.TensorType(shape=example_input.shape)]
+    inputs=[ct.TensorType(shape=input_shape)]
 )
 model_name = args.filename.split('/')[-1].split('.')[0]
 mlmodel_file = args.out_dir + '/' + model_name + '.mlpackage'
@@ -169,8 +167,8 @@ logger.info('Packaging model')
 spec = model.get_spec()
 input_name = spec.description.input[0].name
 output_name = spec.description.output[0].name
-logger.debug('Model input name: %s, size: %s', input_name, input_size)
-output_size_shrinked = output_size - 2 * args.shrink_size * args.scale
+logger.debug('Model input name: %s, size: %s', input_name, args.input_size)
+output_size_shrinked = (args.input_size - 2 * args.shrink_size) * args.scale
 logger.debug('Model output name: %s, size: %s, after shrinking: %s', output_name, output_size, output_size_shrinked)
 
 manifest = {
@@ -185,8 +183,8 @@ manifest = {
         }
     },
     "dataFormat": "nchw",
-    "inputShape": list(example_input.shape),
-    "outputShape": list(out.shape),
+    "inputShape": input_shape,
+    "outputShape": output_shape,
     "shrinkSize": args.shrink_size,
     "scale": args.scale,
     "alphaMode": "sameAsMain"
