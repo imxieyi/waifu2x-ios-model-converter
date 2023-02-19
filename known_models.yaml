@@ -67,7 +67,7 @@ models:
   file: "./torch_models/4x_eula_digimanga_bw_v1_860k.pth"
   sha256: a3ba78a589cf2f2c39fe77cf3f472173cdcb3ade7dcc77ee5d1cd266d733e3d3
   scale: 4
-  description: "Manga"
+  description: "Black and white digital manga with halftones."
   author: "end user license agreement#9756"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
@@ -78,7 +78,7 @@ models:
   scale: 4
   monochrome: true
   cuda: true
-  description: "Manga"
+  description: "Black and white digital manga with halftones. Vast improvement over v1 in low frequency detail. v1 may still be better in some edge cases."
   author: "end user license agreement#9756"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"

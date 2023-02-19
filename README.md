@@ -4,6 +4,8 @@ waifu2x iOS Model Converter
 ## Introduction
 This is a ML model converter for [waifu2x iOS](https://apps.apple.com/app/apple-store/id1286485858) custom model feature.
 
+**Beta testing:** This repository will be moved to GitHub after public release. As for now please send feedbacks to support@waifu2x.app.
+
 ## Pre-converted models
 A few models from [upscale.wiki](https://upscale.wiki/wiki/Model_Database) with permissive licenses and are available for download:
 - [Google Drive](https://drive.google.com/drive/folders/1btfOExWcbO3qTN2uad61k2T0hBjCM0tv?usp=share_link)
@@ -29,7 +31,7 @@ Tested environments: macOS 13.1 / Debian 11, Python 3.10.9 (conda 23.1.0)
 It's recommended that you create a [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands) or [virtualenv](https://virtualenv.pypa.io/en/latest/) so that dependencies installed later will be the correct (tested) version.
 
 ```bash
-git clone --recursive https://github.com/imxieyi/waifu2x-ios-model-converter.git
+git clone --recursive https://git.imxieyi.com/xieyi/waifu2x-ios-model-converter.git
 cd waifu2x-ios-model-converter
 pip install -r requirements.txt
 ```
