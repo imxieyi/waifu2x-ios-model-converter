@@ -145,3 +145,12 @@ models:
   author: "[Kim2091](https://upscale.wiki/wiki/User:Kim2091)"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "Remacri Upscaler 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_foolhardy_Remacri.pth"
+  sha256: e1a73bd89c2da1ae494774746398689048b5a892bd9653e146713f9df8bca86a
+  scale: 4
+  description: "A creation of BSRGAN with more details and less smoothing, made by interpolating IRL models such as Siax, Superscale, Superscale Artisoft, Pixel Perfect, etc. This was, things like skin and other details don't become mushy and blurry."
+  author: "Foolhardy"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
