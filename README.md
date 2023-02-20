@@ -48,3 +48,7 @@ python converter.py --help
 There are some known working models (from [upscale.wiki](https://upscale.wiki/wiki/Model_Database)) defined in [known_models.yaml](./known_models.yaml). To convert a subset or all of them, place downloaded `.pth` files under [torch_models](./torch_models). Then you can run `python batch_convert.py` to convert them. Resulting models will be placed under [out_models](./out_models)
 
 If there is a model you have problem converting, please create an issue so that it can be investigated. **There is no guarantee that your problem will be solved due to the complexity of model conversion.** Note that models with a strict license for commercial use (GNU GPLv3, CC BY-NC 4.0, etc.) must be converted by yourself.
+
+## Troubleshoot
+### `BlobWriter not loaded` Error
+This happens because you are running the script on an unsupported platform. Unfortunately [coremltools pip package](https://pypi.org/project/coremltools/#files) only supports macOS and x86_64 Linux. If you are using Windows please try [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/).
