@@ -147,7 +147,7 @@ logger.info('Successfully traced model')
 input_size = example_input.shape[-1]
 output_size = out.shape[-1]
 if args.scale != output_size / input_size:
-    logger.fatal('Expected output size to be %d, but is actually %.2f', args.scale, output_size / input_size)
+    logger.fatal('Expected output scale to be %d, but is actually %.2f', args.scale, output_size / input_size)
     sys.exit(-1)
 
 logger.info('Converting to Core ML')
@@ -184,7 +184,6 @@ manifest = {
     },
     "dataFormat": "nchw",
     "inputShape": input_shape,
-    "outputShape": output_shape,
     "shrinkSize": args.shrink_size,
     "scale": args.scale,
     "alphaMode": "sameAsMain"
