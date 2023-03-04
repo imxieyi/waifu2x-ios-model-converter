@@ -107,6 +107,9 @@ Both the new `mlpackage` and the old `mlmodel` formats of Core ML models are sup
 ### Precision
 Only float32 precision is supported on both input and output tensor. Intermediate layers can use anything, which is by default float16 in Core ML models. Please refer to [Typed Execution](https://coremltools.readme.io/docs/typed-execution) to learn how to set Core ML model precision to float32. Generally float16 is good enough with hardly visible degradation in image quality. Using float32 guarantees that your model cannot utilize ANE at all, which is a huge performance loss on ANE-equipped devices.
 
+### Range of Values
+The range of values on input tensor and output tensor must be `[0, 1]`. If your model uses a different range, you must normalize it by adding additional layers.
+
 ### Monochrome Models
 Currently only models with 3 channels (RGB) are supported. However, it doesn't mean you cannot use 1 channel models. You can convert them into 3 channels. An example of PyTorch implementation used in [converter.py](./converter.py):
 ```python
