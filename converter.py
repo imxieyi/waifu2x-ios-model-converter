@@ -35,6 +35,9 @@ required_args.add_argument('--out-dir', type=str, required=True, help='Output di
 optional_args = parser.add_argument_group('optional')
 optional_args.add_argument('--monochrome', action='store_true', help='Input model is monochrome (single channel)')
 optional_args.add_argument('--has-cuda', action='store_true', help='Input model contains CUDA object')
+optional_args.add_argument('--num-features', type=int, help='Override number of features for (Real-)ESRGAN model')
+optional_args.add_argument('--num-blocks', type=int, help='Override number of blocks for (Real-)ESRGAN model')
+optional_args.add_argument('--num-convs', type=int, help='Override number of conv layers for Real-ESRGAN Compact model')
 optional_args.add_argument('--input-size', type=int, default=256, help='Input size (both width and height), default to 256')
 optional_args.add_argument('--shrink-size', type=int, default=20, help='Shrink size (applied to all 4 sides on input), default to 20')
 optional_args.add_argument('--description', type=str, required=False, help='Description of the model, supports Markdown')
@@ -68,7 +71,6 @@ if args.input_size - 2 * args.shrink_size < 4:
 os.makedirs(args.out_dir, exist_ok=True)
 
 import coremltools as ct
-import psutil
 import torch
 
 torch_model = None
@@ -89,22 +91,33 @@ logger.info('Creating model architecture')
 channels = 3
 if args.monochrome:
     channels = 1
-if args.type == 'esrgan_old':
+
+num_features = 64
+num_blocks = 23
+num_convs = 16
+
+if args.type == 'esrgan_old_lite':
+    num_features = 32
+    num_blocks = 12
+
+if args.num_features is not None:
+    num_features = args.num_features
+if args.num_blocks is not None:
+    num_blocks = args.num_blocks
+if args.num_convs is not None:
+    num_convs = args.num_convs
+
+if args.type == 'esrgan_old' or args.type == 'esrgan_old_lite':
     from esrgan_old import architecture
     torch_model = architecture.RRDB_Net(
-        channels, channels, 64, 23, gc=32, upscale=args.scale, norm_type=None,
-        act_type='leakyrelu', mode='CNA', res_scale=1, upsample_mode='upconv')
-elif args.type == 'esrgan_old_lite':
-    from esrgan_old import architecture
-    torch_model = architecture.RRDB_Net(
-        channels, channels, 32, 12, gc=32, upscale=args.scale, norm_type=None,
+        channels, channels, num_features, num_blocks, gc=32, upscale=args.scale, norm_type=None,
         act_type='leakyrelu', mode='CNA', res_scale=1, upsample_mode='upconv')
 elif args.type == 'real_esrgan':
     from basicsr.archs.rrdbnet_arch import RRDBNet
-    torch_model = RRDBNet(num_in_ch=channels, num_out_ch=channels, num_feat=64, num_block=23, num_grow_ch=32, scale=args.scale)
+    torch_model = RRDBNet(num_in_ch=channels, num_out_ch=channels, num_feat=num_features, num_block=num_blocks, num_grow_ch=32, scale=args.scale)
 elif args.type == 'real_esrgan_compact':
     from basicsr.archs.srvgg_arch import SRVGGNetCompact
-    torch_model = SRVGGNetCompact(num_in_ch=channels, num_out_ch=channels, num_feat=64, num_conv=16, upscale=args.scale, act_type='prelu')
+    torch_model = SRVGGNetCompact(num_in_ch=channels, num_out_ch=channels, num_feat=num_features, num_conv=num_convs, upscale=args.scale, act_type='prelu')
 else:
     logger.fatal('Unknown model type: %s', args.type)
     sys.exit(-1)
@@ -138,7 +151,7 @@ if args.monochrome:
 logger.info('Tracing model, will take a long time and a lot of RAM')
 torch_model.eval()
 torch_model = torch_model.to(device)
-example_input = torch.zeros(1, 3, 64, 64)
+example_input = torch.zeros(1, 3, 16, 16)
 example_input = example_input.to(device)
 traced_model = torch.jit.trace(torch_model, example_input)
 out = traced_model(example_input)

@@ -20,7 +20,6 @@ You don't have to use this tool to create custom models. See [SPECS.md](./SPECS.
 
 ## System Requirements
 - macOS or x86_64 Linux
-- GPU supporting [MPS](https://pytorch.org/docs/stable/notes/mps.html) or CUDA (not required but speeds up conversion)
 - Python 3
 
 Tested environments: macOS 13.1 / Debian 11, Python 3.10.9 (conda 23.1.0)

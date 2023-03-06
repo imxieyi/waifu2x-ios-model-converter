@@ -29,6 +29,7 @@ known_models_yaml = None
 with open('known_models.yaml', 'r') as f:
     known_models_yaml = yaml.load(f.read(), Loader=yaml.Loader)
 
+num_converted = 0
 for model in known_models_yaml['models']:
     file = model['file']
     if not os.path.exists(file):
@@ -59,6 +60,12 @@ for model in known_models_yaml['models']:
         command += ['--has-cuda']
     if 'monochrome' in model and model['monochrome']:
         command += ['--monochrome']
+    if 'features' in model:
+        command += ['--num-features', str(model['features'])]
+    if 'blocks' in model:
+        command += ['--num-blocks', str(model['blocks'])]
+    if 'convs' in model:
+        command += ['--num-convs', str(model['convs'])]
     command += [file]
     logger.debug('Command: %s', command)
     process = subprocess.Popen(command, stdout=subprocess.PIPE)
@@ -68,5 +75,8 @@ for model in known_models_yaml['models']:
     process.communicate()
     if process.returncode != 0:
         break
+    num_converted += 1
 
-logger.info('Output models are saved to %s directory', OUT_DIR)
+if num_converted > 0:
+    logger.info('Converted %d out of %d supported models', num_converted, len(known_models_yaml['models']))
+    logger.info('Output models are saved to %s directory', OUT_DIR)

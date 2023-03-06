@@ -154,3 +154,15 @@ models:
   author: "Foolhardy"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "sudo UltraCompact 2x 1.121.175 G"
+  type: real_esrgan_compact
+  file: "./torch_models/sudo_UltraCompact_2x_1.121.175_G.pth"
+  sha256: e53987f0312dee424b4dbd9dce7b2eacbe03fdf1380e44a11f8a4d2ca88c99e3
+  scale: 2
+  features: 64
+  convs: 8
+  cuda: true
+  description: "Realtime animation restauration and doing stuff like deblur and compression artefact removal"
+  author: "sudo"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
