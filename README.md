@@ -11,10 +11,15 @@ A few models from [upscale.wiki](https://upscale.wiki/wiki/Model_Database) with 
 
 If another model you want has a permissive license for commercial use (CC0, MIT, Unlicense, etc.) and a supported architecture (see below), you can request a conversion by creating an issue. Note that models without any license are not permissive. **Also note that this is not a service, so don't set any expectations here.**
 
-## Colab Converter (Online)
+## Web Converter
+- https://huggingface.co/spaces/imxieyi/waifu2x-ios-model-converter
+
+The web converter is hosted on [Hugging Face Spaces](https://huggingface.co/spaces) to convert tested models defined in [known_models.yaml](./known_models.yaml).
+
+## Colab Converter
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/imxieyi/waifu2x-ios-model-converter/blob/master/esrgan_to_waifu2x_ios.ipynb)
 
-Please use the Colab converter to easily convert any other tested models in [known_models.yaml](./known_models.yaml).
+In case the web converter doesn't work, please use the Colab converter instead.
 
 ## Custom Model Specification
 You don't have to use this tool to create custom models. See [SPECS.md](./SPECS.md) if you want to create one from scratch.
