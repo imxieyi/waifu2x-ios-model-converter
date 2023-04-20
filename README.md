@@ -4,12 +4,17 @@ waifu2x-ios Model Converter
 ## Introduction
 This is a Core ML model converter for [waifu2x-ios (App Store version)](https://apps.apple.com/app/apple-store/id1286485858) custom models feature. Both iOS/iPadOS and macOS versions of the app are supported.
 
-## Pre-converted models
+## Pre-converted Models
 A few models from [upscale.wiki](https://upscale.wiki/wiki/Model_Database) with permissive licenses are pre-converted and available to download:
 - [Google Drive](https://drive.google.com/drive/folders/1btfOExWcbO3qTN2uad61k2T0hBjCM0tv?usp=share_link)
 - [百度网盘](https://pan.baidu.com/s/1KFuncLytPdSMC_xMJ3l9dw?pwd=8aoz) (For users based in China)
 
 If another model you want has a permissive license for commercial use (CC0, MIT, Unlicense, etc.) and a supported architecture (see below), you can request a conversion by creating an issue. Note that models without any license are not permissive. **Also note that this is not a service, so don't set any expectations here.**
+
+## Colab Converter (Online)
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/imxieyi/waifu2x-ios-model-converter/blob/master/esrgan_to_waifu2x_ios.ipynb)
+
+Please use the Colab converter to easily convert any other tested models in [known_models.yaml](./known_models.yaml).
 
 ## Custom Model Specification
 You don't have to use this tool to create custom models. See [SPECS.md](./SPECS.md) if you want to create one from scratch.
