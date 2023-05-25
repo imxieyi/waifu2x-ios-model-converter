@@ -166,3 +166,21 @@ models:
   author: "sudo"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "NMKD Typescale"
+  type: esrgan_old
+  file: "./torch_models/8x_NMKD-Typescale_175k.pth"
+  sha256: 1bceca9277a870617d611222adce394f71123fc345334c2bb75e80034c7ab323
+  scale: 8
+  description: "Low-resolution text/typography and symbols"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "BSTexty 2x"
+  type: esrgan_old
+  file: "./torch_models/2x_BSTexty_86000G.pth"
+  sha256: e67a3542bb963d7ca17401a678679340c70120695eb985ddeb5d2697834fbcde
+  scale: 2
+  description: "As the name might suggest, this model aims to upscale text with less distortion that other models. It seems to do a good job generally, but don't expect it to be a state of the art model that can upscale magazines and stuff. It makes things more readable but since it was train on B/W pictures it desaturates them."
+  author: "[BlackScout](https://upscale.wiki/wiki/User:BlackScout)"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html)"
