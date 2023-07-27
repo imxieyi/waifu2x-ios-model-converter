@@ -28,7 +28,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('filename')
 required_args = parser.add_argument_group('required')
-required_args.add_argument('--type', choices=['esrgan_old', 'esrgan_old_lite', 'real_esrgan', 'real_esrgan_compact'], required=True, help='Type of the model')
+required_args.add_argument('--type', choices=['esrgan_old', 'esrgan_old_lite', 'real_esrgan', 'real_esrgan_compact', 'esrgan_plus'], required=True, help='Type of the model')
 required_args.add_argument('--name', type=str, required=True, help='Name of the model')
 required_args.add_argument('--scale', type=int, required=True, help='Scale factor of the model')
 required_args.add_argument('--out-dir', type=str, required=True, help='Output directory')
@@ -118,6 +118,9 @@ elif args.type == 'real_esrgan':
 elif args.type == 'real_esrgan_compact':
     from basicsr.archs.srvgg_arch import SRVGGNetCompact
     torch_model = SRVGGNetCompact(num_in_ch=channels, num_out_ch=channels, num_feat=num_features, num_conv=num_convs, upscale=args.scale, act_type='prelu')
+elif args.type == 'esrgan_plus':
+    from esrgan_plus.codes.models.modules.architecture import RRDBNet
+    torch_model = RRDBNet(in_nc=channels, out_nc=channels, nf=num_features, nb=num_blocks, gc=32, upscale=args.scale)
 else:
     logger.fatal('Unknown model type: %s', args.type)
     sys.exit(-1)

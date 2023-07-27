@@ -258,3 +258,13 @@ models:
   author: "[the-database](https://github.com/the-database)"
   source: "[the-database/mangajanai](https://github.com/the-database/mangajanai)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "MangaScale V3 2x"
+  type: esrgan_plus
+  file: "./torch_models/2x_MangaScaleV3.pth"
+  sourceLink: https://mega.nz/file/nR51EYYC#RcAKkxb8hAzvZAj4TLxnAukd9gbrYuUeyjUp2l1ffb8
+  sha256: da2b113388bf199d69202b06d5c803d1dd85ce61955c7870f1106530a2ce142a
+  scale: 2
+  description: "To upscale manga including halftones, instead of trying to smooth them out."
+  author: "Bunzero++"
+  source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"

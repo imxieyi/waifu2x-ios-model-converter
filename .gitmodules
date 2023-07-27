@@ -1,3 +1,6 @@
 [submodule "esrgan_old"]
 	path = esrgan_old
 	url = https://github.com/imxieyi/ESRGAN.git
+[submodule "esrgan_plus"]
+	path = esrgan_plus
+	url = https://github.com/imxieyi/ESRGANplus
