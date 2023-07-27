@@ -27,6 +27,7 @@ You don't have to use this tool to create custom models. See [SPECS.md](./SPECS.
 ## Supported Architectures
 - [ESRGAN ("old arch")](https://github.com/xinntao/ESRGAN/tree/old-arch), including lite version
 - [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN), including compact version (SRVGGNetCompact)
+- [ESRGAN+ (nESRGAN+)](https://github.com/ncarraz/ESRGANplus)
 
 ## System Requirements
 - macOS or x86_64 Linux
