@@ -268,3 +268,15 @@ models:
   author: "Bunzero++"
   source: "[upscale.wiki Model Database](https://upscale.wiki/wiki/Model_Database)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "DigitalFlim SuperUltraCompact 2x"
+  type: real_esrgan_compact
+  file: "./torch_models/2x-DigitalFlim-SuperUltraCompact.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/2x-DigitalFlim-SuperUltraCompact.pth
+  sha256: c34cae569319688f1fa10aa75c5734040896790e41bb23f128cd633923d850e5
+  scale: 2
+  features: 24
+  convs: 8
+  description: "Category: Digital Animation\n\nPurpose: Animation\n\nThis was trained on the dataset that OptimusPrimal used for his DigitalFilm models. This model cleans up the image removing some noise while upscaling. This model is very fast, running around 200x the speed of a standard ESRGAN model on my system. This is primarily a proof of concept for how fast Real-ESRGAN models can get while still producing nice results."
+  author: "[Zarxrax](https://openmodeldb.info/users/zarxrax)"
+  source: "[OpenModelDB](https://openmodeldb.info/)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
