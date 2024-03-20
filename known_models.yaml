@@ -280,3 +280,44 @@ models:
   author: "[Zarxrax](https://openmodeldb.info/users/zarxrax)"
   source: "[OpenModelDB](https://openmodeldb.info/)"
   license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "WTP UDS Esrgan 4x"
+  type: real_esrgan
+  file: "./torch_models/4x_WTP_UDS_Esrgan.pth"
+  sourceLink: https://drive.google.com/file/d/1CTLUyi3SM7gz7P38eIIUnWipLSLGtbrd/view?usp=sharing
+  sha256: 6b5823794353594d2b3b35930692a25687b2f707e0246dc5c47cad4dfddf4ca9
+  scale: 4
+  description: "Remove screentone"
+  author: "umzi.x.dead"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-WTP-UDS-Esrgan)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "UltraSharp V0.5 BETA 4x"
+  type: esrgan_old
+  file: "./torch_models/4x-UltraScale_V0.5 BETA.pth"
+  sourceLink: https://mega.nz/folder/qZRBmaIY#nIG8KyWFcGNTuMX_XNbJ_g/folder/yNYjSYaa
+  sha256: 70fdc40226d4417f507f100ea51efbfc69cbf785628b1ac348a153866c007a84
+  scale: 4
+  description: "This is Kim2091's best model yet! It generates lots and lots of detail and leaves a nice texture on images. It works on most images, whether compressed or not. It does work best on JPEG compression though, as that's mostly what it was trained on. It has the ability to restore highly compressed images as well!"
+  author: "Kim2091"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-UltraSharp)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "Lollypop 4x"
+  type: esrgan_old
+  file: "./torch_models/lollypop.pth"
+  sourceLink: https://mega.nz/folder/qZRBmaIY#nIG8KyWFcGNTuMX_XNbJ_g/folder/yNYjSYaa
+  sha256: 4e609039d8ece82dd6aba14b692181c6722a461a762eef538700683dfef6fb6e
+  scale: 4
+  description: "A universal model, that is aimed at prerendered images, but handles realistic faces, manga, pixel art and dedithering as well. Trained using the patchgan discriminator, with cx loss, cutmixup and frequency separation, it produces good results with a slight grain due to patchgan, with some sharpening using cutmixup."
+  author: "LyonHrt"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-Lollypop)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "Real-ESRGAN 4x minus"
+  type: esrgan_old
+  file: "./torch_models/realesrgan-x4minus.pth"
+  sourceLink: https://1drv.ms/u/s!Aip-EMByJHY282_jrOsPVdjxc3by?e=2paTnK
+  sha256: 4cb1e750d8402daf59e450a8ba0a23beab728b246e589363a14fe547481b631b
+  scale: 4
+  cuda: true
+  description: "Basically realesrgan-x4plus without the degradation training. Supposed to help retain more details, but unfortunately due to the dataset (I think) still blurs details adjacent to other objects."
+  author: "DinJerr"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-realesrgan-x4minus)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
