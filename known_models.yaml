@@ -321,3 +321,13 @@ models:
   author: "DinJerr"
   source: "[OpenModelDB](https://openmodeldb.info/models/4x-realesrgan-x4minus)"
   license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "ISO denoise v2"
+  type: esrgan_old
+  file: "./torch_models/1x_ISO_denoise_v2.pth"
+  sourceLink: https://drive.google.com/uc?export=download&confirm=1&id=1HSUvnQm56_CmVAAMjTfVn_Hi6a4Bm2h0
+  sha256: c3f9061143cb9c65add4f4d6b701416d251b6c22624bd5161a65357f52d5627d
+  scale: 1
+  description: "Remove high ISO noise"
+  author: "Alpha"
+  source: "[OpenModelDB](https://openmodeldb.info/models/1x-ISO-denoise-v2)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
