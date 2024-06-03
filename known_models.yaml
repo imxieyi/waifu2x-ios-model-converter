@@ -331,3 +331,13 @@ models:
   author: "Alpha"
   source: "[OpenModelDB](https://openmodeldb.info/models/1x-ISO-denoise-v2)"
   license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "DeSharpen"
+  type: esrgan_old
+  file: "./torch_models/1x_DeSharpen.pth"
+  sourceLink: https://mega.nz/file/qRZD3SLL#RqP7cISIcoW5YakPya9CXEWSEHWqUSKdWLQSdYKGa14
+  sha256: 3a2d3ecc3261f9f196f245de2ae85ce706257087ad7ffa50d7fb42312359f9bf
+  scale: 1
+  description: "Category: Oversharpening Purpose: Denoise Pretrained: 1st attempt on random sharpening with the same dataset at 200000 iterations, which was trained on non-random desharp model, total ~600000 iterations on 3 models.\n\n\n\nMade for rare particular cases when the image was destroyed by applying noise, i.e. game textures or any badly exported photos. If your image does not have any oversharpening, it won't hurt them, leaving as is. In theory, this model knows when to activate and when to skip, also can successfully remove artifacts if only some parts of the image are oversharpened, for example in image consisting of several combined images, 1 of them with sharpen noise."
+  author: "Loinne"
+  source: "[OpenModelDB](https://openmodeldb.info/models/1x-DeSharpen)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
