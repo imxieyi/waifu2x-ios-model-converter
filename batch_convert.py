@@ -66,6 +66,8 @@ for model in known_models_yaml['models']:
         command += ['--num-blocks', str(model['blocks'])]
     if 'convs' in model:
         command += ['--num-convs', str(model['convs'])]
+    if 'shuffle-factor' in model:
+        command += ['--shuffle-factor', str(model['shuffle-factor'])]
     command += [file]
     logger.debug('Command: %s', command)
     process = subprocess.Popen(command, stdout=subprocess.PIPE)

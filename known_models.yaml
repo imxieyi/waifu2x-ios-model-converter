@@ -341,3 +341,27 @@ models:
   author: "Loinne"
   source: "[OpenModelDB](https://openmodeldb.info/models/1x-DeSharpen)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "2xLexicaRRDBNet"
+  type: esrgan_old
+  file: "./torch_models/2xLexicaRRDBNet.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/2xLexicaRRDBNet/2xLexicaRRDBNet.pth
+  sha256: 47c4ecdb06717b13e16da3000485cce72e378e18b7b7ee2e1020562283f7ac31
+  scale: 2
+  shuffle-factor: 2
+  cuda: true
+  description: "Upscaling AI generated images"
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[GitHub Phhofm/models](https://github.com/Phhofm/models)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "2xLexicaRRDBNet Sharp"
+  type: esrgan_old
+  file: "./torch_models/2xLexicaRRDBNet_Sharp.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/2xLexicaRRDBNet/2xLexicaRRDBNet_Sharp.pth
+  sha256: 11e7bec714d8d15e686e336fe7095bd952e21ee8308551a00ea4df2caa374ac7
+  scale: 2
+  shuffle-factor: 2
+  cuda: true
+  description: "Upscaling AI generated images - a bit sharper then 2xLexicaRRDBNet"
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[GitHub Phhofm/models](https://github.com/Phhofm/models)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"

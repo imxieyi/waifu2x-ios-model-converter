@@ -38,6 +38,7 @@ optional_args.add_argument('--has-cuda', action='store_true', help='Input model 
 optional_args.add_argument('--num-features', type=int, help='Override number of features for (Real-)ESRGAN model')
 optional_args.add_argument('--num-blocks', type=int, help='Override number of blocks for (Real-)ESRGAN model')
 optional_args.add_argument('--num-convs', type=int, help='Override number of conv layers for Real-ESRGAN Compact model')
+optional_args.add_argument('--shuffle-factor', type=int, help='Shuffle input channels in ESRGAN model')
 optional_args.add_argument('--input-size', type=int, default=256, help='Input size (both width and height), default to 256')
 optional_args.add_argument('--shrink-size', type=int, default=20, help='Shrink size (applied to all 4 sides on input), default to 20')
 optional_args.add_argument('--description', type=str, required=False, help='Description of the model, supports Markdown')
@@ -88,13 +89,20 @@ else:
     logger.info('Using torch device cpu, please be patient')
 
 logger.info('Creating model architecture')
-channels = 3
+in_channels = 3
+out_channels = 3
+model_scale = args.scale
 if args.monochrome:
-    channels = 1
+    in_channels = 1
+    out_channels = 1
+if args.shuffle_factor:
+    in_channels *= args.shuffle_factor * args.shuffle_factor
+    model_scale *= args.shuffle_factor
 
 num_features = 64
 num_blocks = 23
 num_convs = 16
+shuffle_factor = None
 
 if args.type == 'esrgan_old_lite':
     num_features = 32
@@ -110,17 +118,17 @@ if args.num_convs is not None:
 if args.type == 'esrgan_old' or args.type == 'esrgan_old_lite':
     from esrgan_old import architecture
     torch_model = architecture.RRDB_Net(
-        channels, channels, num_features, num_blocks, gc=32, upscale=args.scale, norm_type=None,
+        in_channels, out_channels, num_features, num_blocks, gc=32, upscale=model_scale, norm_type=None,
         act_type='leakyrelu', mode='CNA', res_scale=1, upsample_mode='upconv')
 elif args.type == 'real_esrgan':
     from basicsr.archs.rrdbnet_arch import RRDBNet
-    torch_model = RRDBNet(num_in_ch=channels, num_out_ch=channels, num_feat=num_features, num_block=num_blocks, num_grow_ch=32, scale=args.scale)
+    torch_model = RRDBNet(num_in_ch=in_channels, num_out_ch=out_channels, num_feat=num_features, num_block=num_blocks, num_grow_ch=32, scale=args.scale)
 elif args.type == 'real_esrgan_compact':
     from basicsr.archs.srvgg_arch import SRVGGNetCompact
-    torch_model = SRVGGNetCompact(num_in_ch=channels, num_out_ch=channels, num_feat=num_features, num_conv=num_convs, upscale=args.scale, act_type='prelu')
+    torch_model = SRVGGNetCompact(num_in_ch=in_channels, num_out_ch=out_channels, num_feat=num_features, num_conv=num_convs, upscale=args.scale, act_type='prelu')
 elif args.type == 'esrgan_plus':
     from esrgan_plus.codes.models.modules.architecture import RRDBNet
-    torch_model = RRDBNet(in_nc=channels, out_nc=channels, nf=num_features, nb=num_blocks, gc=32, upscale=args.scale)
+    torch_model = RRDBNet(in_nc=in_channels, out_nc=out_channels, nf=num_features, nb=num_blocks, gc=32, upscale=args.scale)
 else:
     logger.fatal('Unknown model type: %s', args.type)
     sys.exit(-1)
@@ -151,6 +159,35 @@ if args.monochrome:
             return x
     torch_model = MonochromeWrapper(torch_model)
 
+if args.shuffle_factor:
+    from torch import nn
+    # Source: https://github.com/chaiNNer-org/spandrel/blob/cb2f03459819ce114c52e328b7ac9bb2812f205a/libs/spandrel/spandrel/architectures/__arch_helpers/padding.py
+    def pad_to_multiple(
+        tensor: torch.Tensor,
+        multiple: int,
+        *,
+        mode: str,
+        value: float = 0.0,
+    ) -> torch.Tensor:
+        _, _, h, w = tensor.size()
+        pad_h = (multiple - h % multiple) % multiple
+        pad_w = (multiple - w % multiple) % multiple
+        if pad_h or pad_w:
+            return nn.pad(tensor, (0, pad_w, 0, pad_h), mode, value)
+        return tensor
+
+    class ShuffleWrapper(nn.Module):
+        def __init__(self, model: nn.Module):
+            super(ShuffleWrapper, self).__init__()
+            self.model = model
+        def forward(self, x: torch.Tensor):
+            _, _, h, w = x.size()
+            x = pad_to_multiple(x, args.shuffle_factor, mode="reflect")
+            x = torch.pixel_unshuffle(x, downscale_factor=args.shuffle_factor)
+            x = self.model(x)
+            return x[:, :, : h * model_scale, : w * model_scale]
+    torch_model = ShuffleWrapper(torch_model)
+
 logger.info('Tracing model, will take a long time and a lot of RAM')
 torch_model.eval()
 torch_model = torch_model.to(device)
@@ -170,10 +207,14 @@ logger.info('Converting to Core ML')
 input_shape = [1, 3, args.input_size, args.input_size]
 output_size = args.input_size * args.scale
 output_shape = [1, 3, output_size, output_size]
+minimum_deployment_target = None
+if args.shuffle_factor:
+    minimum_deployment_target = ct.target.iOS16
 model = ct.convert(
     traced_model,
     convert_to="mlprogram",
-    inputs=[ct.TensorType(shape=input_shape)]
+    inputs=[ct.TensorType(shape=input_shape)],
+    minimum_deployment_target=minimum_deployment_target
 )
 model_name = args.filename.split('/')[-1].split('.')[0]
 mlmodel_file = args.out_dir + '/' + model_name + '.mlpackage'
