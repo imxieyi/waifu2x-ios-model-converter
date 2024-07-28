@@ -365,3 +365,125 @@ models:
   author: "[Philip Hofmann](https://github.com/Phhofm)"
   source: "[GitHub Phhofm/models](https://github.com/Phhofm/models)"
   license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "eula_anifilm v1"
+  type: esrgan_old
+  file: "./torch_models/4x-eula-anifilm-v1.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/4x-eula-anifilm-v1.pth
+  sha256: c168436f137f91e842d952821391b7efb689bfc7b316c0886b2913c31f0d02f0
+  scale: 4
+  description: "Upscaling cel animation. Trained this more than a year ago, releasing cause I've got a much better v2 and v3 now."
+  author: "[end user license agreement#9756](https://openmodeldb.info/users/eula)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-eula-anifilm-v1)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "eula digimanga MiA 65k"
+  type: esrgan_old
+  file: "./torch_models/4x-eula-digimanga-MiA-65k.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/4x-eula-digimanga-MiA-65k.pth
+  sha256: 425c8fb3855b64dacd64cc83e4a9ce3fd61bfc7e92b6541129439bc15ad4465b
+  scale: 4
+  description: "Purpose: Grayscale pencil/sketch style art with paper textures (Made in Abyss specific)\n\n\n\nOld model trained for pencil sketch style art, good at restoring the paper and pencil and other textures , specifically the Made in Abyss manga, but should work for art with a similar style.\n\n\n\nComparison: [https://slow.pics/c/D0MuvwLY](https://slow.pics/c/D0MuvwLY)"
+  author: "end user license agreement#9756"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-eula-digimanga-MiA-65k)"
+  license: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+- name: "BooruGan 600k"
+  type: esrgan_old
+  file: "./torch_models/4x_BooruGan_600k.pth"
+  sourceLink: https://drive.google.com/uc?export=download&confirm=1&id=1DRyqqy24OU6G_mwsGjy6Zaxan_Fy1LNU
+  sha256: adcaf9207047191b5508b1d47d564580ca434baf4a95ad2e2869e3ad8604ce8d
+  scale: 4
+  description: "This model is designed to mainly upscale anime artworks."
+  author: "[Tal](https://openmodeldb.info/users/tal)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-BooruGan-600k)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "BooruGan 650k"
+  type: esrgan_old
+  file: "./torch_models/4x_BooruGan_650k.pth"
+  sourceLink: https://drive.google.com/uc?export=download&confirm=1&id=1psKp2DLWscPmDuzSTC8XqXL0LWnWuTYs
+  sha256: 75b35eb6084e6e95e5d890a3920151da832398a61904d4171fd90fbadbb34b08
+  scale: 4
+  description: "This model is designed to mainly upscale anime artworks. If you have issues with chroma then try the 600k iterations release."
+  author: "[Tal](https://openmodeldb.info/users/tal)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-BooruGan-650k)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "Futsuu Anime"
+  type: real_esrgan_compact
+  file: "./torch_models/2x-Futsuu-Anime.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/2x-Futsuu-Anime.pth
+  sha256: 5ed232c71599b01911e045c0246530fcfe5b2e0791242ff7d3964f97d74f8df0
+  scale: 2
+  description: "This model upscales while doing some sharpening and line darkening. Can also clean up some minor artifacts of various types. It is intended to to be a good general purpose upscaler that will work well with most animation."
+  author: "[Zarxrax](https://openmodeldb.info/users/zarxrax)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/2x-Futsuu-Anime)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD YandereNeo (2x)"
+  type: esrgan_old_lite
+  file: "./torch_models/2x-NMKD-YandereNeo.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/2x-NMKD-YandereNeo.pth
+  sha256: a305101b33f804206a9d16d3b53725ed7d9f2b8550830fcdc6bcf68ece32f0ff
+  scale: 2
+  description: "Pretrained model: 4x_DIV2K-Lite_1M (4x_NMKD-YandereNeo-Lite_320k for the 2x conversion)"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/2x-NMKD-YandereNeo)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD YandereNeo (4x)"
+  type: esrgan_old_lite
+  file: "./torch_models/4x-NMKD-YandereNeo.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/4x-NMKD-YandereNeo.pth
+  sha256: 988f57dd12e63cf7aad10192fd06518e3300b449362df2a03eb1f9774a10f8b3
+  scale: 4
+  description: "Pretrained model: 4x_DIV2K-Lite_1M (4x_NMKD-YandereNeo-Lite_320k for the 2x conversion)"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-YandereNeo)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD YandereNeo Superlite"
+  type: esrgan_old_lite
+  file: "./torch_models/4x-NMKD-YandereNeo-Superlite.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/4x-NMKD-YandereNeo-Superlite.pth
+  sha256: 9d584ad24087472ffb24f8e2c0ec797838b1d2ed4b8a71a503e72235155120e1
+  scale: 4
+  features: 64
+  blocks: 2
+  description: ""
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-YandereNeo-Superlite)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD YandereNeo XL"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKD-YandereNeoXL_200k.pth"
+  sourceLink: https://icedrive.net/1/f0UAiRqz3N
+  sha256: ddcb5856b948654b6298fd50ed90a461eff8442d298779c23724a8c0e7bbbab1
+  scale: 4
+  description: ""
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-YandereNeo-XL)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD YandereInpaint"
+  type: esrgan_old
+  file: "./torch_models/1x_NMKD-YandereInpaint_375000_G.pth"
+  sourceLink: https://icedrive.net/s/43GNBihZyi
+  sha256: 7c2f0ff3c38dbfb1818b3eba736cb8cb2502abf65eec898773fb76a31075aaef
+  scale: 1
+  description: ""
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/1x-NMKD-YandereInpaint)"
+  license: "None"
+- name: "NMKD UltraYandere Lite"
+  type: esrgan_old_lite
+  file: "./torch_models/4x-NMKD-UltraYandere-Lite.pth"
+  sourceLink: https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6ygfvpvzka/b/open-modeldb-files/o/4x-NMKD-UltraYandere-Lite.pth
+  sha256: 20bcc2e823c26271a6d89d14578fd80ffb3aa727535284298161cb6a81cb501c
+  scale: 4
+  description: "Fast Anime/Art upscaling\n\n\n\nPretrained model: 4x_DIV2K-Lite"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-UltraYandere-Lite)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD UltraYandere"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKD-UltraYandere_300k.pth"
+  sourceLink: https://icedrive.net/1/43GNBihZyi
+  sha256: 717ec8b63ae676b3b6ca6bcc0c7446b75c68a356fde404c725ee4dc8d40e37b2
+  scale: 4
+  description: "Purpose: Art/Anime\n\n\n\nHighly flexible 2D Art upscaling"
+  author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-UltraYandere)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
