@@ -487,3 +487,68 @@ models:
   author: "[Nmkd](https://upscale.wiki/wiki/User:Nmkd)"
   source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-UltraYandere)"
   license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "Nomos8kSC"
+  type: esrgan_old
+  file: "./torch_models/4xNomos8kSC.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/4xNomos8kSC/4xNomos8kSC.pth
+  sha256: 07a7ccd6443d012d528999cd77e40c7d265aaf1f656c499b37936e49603a0b1d
+  scale: 4
+  description: "4x photo upscaler with otf jpg compression and blur, trained on musl's Nomos8k_sfw dataset for realisic sr"
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-Nomos8kSC)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "4xNomos2_otf_esrgan"
+  type: esrgan_old
+  file: "./torch_models/4xNomos2_otf_esrgan.pth"
+  sourceLink: https://github.com/Phhofm/models/releases/download/4xNomos2_otf_esrgan/4xNomos2_otf_esrgan.pth
+  sha256: 6c16d8b22b8468e0c0b766f1569e10a77d38fc7a1a929b804806dce84ddb85d3
+  scale: 4
+  cuda: true
+  description: "4x ESRGAN model for photography, trained using the Real-ESRGAN otf degradation pipeline."
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-Nomos2-otf-esrgan)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "4xNomosWebPhoto_esrgan"
+  type: esrgan_old
+  file: "./torch_models/4xNomosWebPhoto_esrgan.pth"
+  sourceLink: https://github.com/Phhofm/models/releases/download/4xNomosWebPhoto_esrgan/4xNomosWebPhoto_esrgan.pth
+  sha256: 131bb044af9fff0c748e460df1dce5aff018e2cd44340bbc6d97e683cdc0d491
+  scale: 4
+  cuda: true
+  description: "4x ESRGAN model for photography, trained with realistic noise, lens blur, jpg and webp re-compression.\n\nESRGAN version of 4xNomosWebPhoto_RealPLKSR, trained on the same dataset and in a similiar way.\n\nFor more information look into the 4xNomosWebPhoto_RealPLKSR release, and the pdf file in its attachments."
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NomosWebPhoto-esrgan)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "HFA2k"
+  type: esrgan_old
+  file: "./torch_models/4xHFA2k.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/4xHFA2k/4xHFA2k.pth
+  sha256: 35dfd9f6e9d2d264f0e79c6a054798a5e71b1c752bd8b668786c01ebd62fe2b0
+  scale: 4
+  cuda: true
+  description: "4x anime image upscaler with a bit of otf jpg compression and blur. Trained on musl's hfa2k dataset release for Anime SISR, which has been extracted from modern anime films, where the selection criteria was high SNR, no DOF and high frequency information."
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-HFA2k)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "4xLSDIR"
+  type: esrgan_old
+  file: "./torch_models/4xLSDIR.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/4xLSDIR/4xLSDIR.pth
+  sha256: 2a743089e6395091b0073c15b4392c3c658ee32841ba770c15c27d92426e5901
+  scale: 4
+  cuda: true
+  description: "A normal ESRGAN model without degradations and without any pretrain, simply an RRDBNet model trained on paired dataset (4x downsampled) on the full LSDIR dataset (84,991 images / 165 GB)"
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-LSDIR)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
+- name: "4xLSDIRplus"
+  type: esrgan_old
+  file: "./torch_models/4xLSDIRplus.pth"
+  sourceLink: https://github.com/Phhofm/models/raw/main/4xLSDIRplus/4xLSDIRplus.pth
+  sha256: b549ddb71199fb8c54a0d33084bfe8ffd74882b383d85668066ca2ba57d49427
+  scale: 4
+  cuda: true
+  description: "Interpolation of 4xLSDIRplusC and 4xLSDIRplusR to handle jpg compression and a little bit of noise/blur"
+  author: "[Philip Hofmann](https://github.com/Phhofm)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-LSDIRplus)"
+  license: "[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)"
