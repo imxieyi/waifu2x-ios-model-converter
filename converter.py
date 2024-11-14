@@ -144,7 +144,48 @@ if 'params_ema' in loadnet:
     loadnet = loadnet['params_ema']
 elif 'params' in loadnet:
     loadnet = loadnet['params']
-torch_model.load_state_dict(loadnet, strict=True)
+
+def mod2normal(state_dict):
+    # this code is copied from https://github.com/victorca25/iNNfer
+    if 'conv_first.weight' in state_dict:
+        crt_net = {}
+        items = list(state_dict)
+
+        crt_net['model.0.weight'] = state_dict['conv_first.weight']
+        crt_net['model.0.bias'] = state_dict['conv_first.bias']
+
+        for k in items.copy():
+            if 'RDB' in k:
+                ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')
+                if '.weight' in k:
+                    ori_k = ori_k.replace('.weight', '.0.weight')
+                elif '.bias' in k:
+                    ori_k = ori_k.replace('.bias', '.0.bias')
+                crt_net[ori_k] = state_dict[k]
+                items.remove(k)
+
+        crt_net['model.1.sub.23.weight'] = state_dict['trunk_conv.weight']
+        crt_net['model.1.sub.23.bias'] = state_dict['trunk_conv.bias']
+        crt_net['model.3.weight'] = state_dict['upconv1.weight']
+        crt_net['model.3.bias'] = state_dict['upconv1.bias']
+        crt_net['model.6.weight'] = state_dict['upconv2.weight']
+        crt_net['model.6.bias'] = state_dict['upconv2.bias']
+        crt_net['model.8.weight'] = state_dict['HRconv.weight']
+        crt_net['model.8.bias'] = state_dict['HRconv.bias']
+        crt_net['model.10.weight'] = state_dict['conv_last.weight']
+        crt_net['model.10.bias'] = state_dict['conv_last.bias']
+        state_dict = crt_net
+    return state_dict
+
+
+try:
+    torch_model.load_state_dict(loadnet, strict=True)
+except Exception as e:
+    if 'conv_first.weight' in loadnet:
+        loadnet = mod2normal(loadnet)
+        torch_model.load_state_dict(loadnet, strict=True)
+    else:
+        raise e
 
 if args.monochrome:
     from torch import nn
