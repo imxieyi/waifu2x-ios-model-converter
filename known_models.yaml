@@ -582,3 +582,43 @@ models:
   author: "[jixiaozhong](https://github.com/jixiaozhong)"
   source: "[OpenModelDB](https://openmodeldb.info/models/4x-realsr-df2k-jpeg)"
   license: "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)"
+- name: "NMKD Superscale 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKD-Superscale-SP_178000_G.pth"
+  sourceLink: https://icedrive.net/1/43GNBihZyi
+  sha256: 1d1b0078fe71446e0469d8d4df59e96baa80d83cda600d68237d655830821bcc
+  scale: 4
+  description: "Perfect upscaling of clean (artifact-free) real-world images.\n\n\n\nDefault model."
+  author: "[Nmkd](https://openmodeldb.info/users/nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-Superscale)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD Superscale 8x"
+  type: esrgan_old
+  file: "./torch_models/8x_NMKD-Superscale_150000_G.pth"
+  sourceLink: https://icedrive.net/1/43GNBihZyi
+  sha256: 1fb44a906b9bc4dd89d6bf8d1d28e6cc59cc58c2a28251aa88c85a38e72c8507
+  scale: 8
+  description: "Perfect upscaling of clean (artifact-free) real-world images.\n\n\n\nDefault model."
+  author: "[Nmkd](https://openmodeldb.info/users/nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-Superscale)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD Superscale Artisoft 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKDSuperscale_Artisoft_120000_G.pth"
+  sourceLink: https://icedrive.net/1/43GNBihZyi
+  sha256: 090ac07bfbfe306df7b3ddde3004f6cb332ec3183a8a95876f35e90b25d2c80b
+  scale: 4
+  description: "Perfect upscaling of clean (artifact-free) real-world images.\n\n\n\nArtisoft (Anti-Artifact & Denoising) model."
+  author: "[Nmkd](https://openmodeldb.info/users/nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-Superscale)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
+- name: "NMKD Superscale Artisoftject 4x"
+  type: esrgan_old
+  file: "./torch_models/4x_NMKD-Superscale-Artisoftject_210000_G.pth"
+  sourceLink: https://icedrive.net/1/43GNBihZyi
+  sha256: f9d9eb7698287573c3c4c08116d1ee75c5c68edf7b905ce8e8d3e1bea0b243d2
+  scale: 4
+  description: "Perfect upscaling of clean (artifact-free) real-world images.\n\n\n\nArtisoftject (Anti-Artifact, Denoising, Noise Injection) model."
+  author: "[Nmkd](https://openmodeldb.info/users/nmkd)"
+  source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-Superscale)"
+  license: "[WTFPL](http://www.wtfpl.net/)"
