@@ -1,5 +1,5 @@
 torch==2.6.0
-torchvision==0.21.0
+torchvision==0.15.2
 basicsr==1.4.2
 coremltools==8.2
 psutil==7.0.0
