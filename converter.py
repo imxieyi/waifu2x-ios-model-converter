@@ -71,6 +71,7 @@ if args.input_size - 2 * args.shrink_size < 4:
 
 os.makedirs(args.out_dir, exist_ok=True)
 
+from collections import OrderedDict
 import coremltools as ct
 import torch
 
@@ -136,9 +137,9 @@ else:
 logger.info('Loading weights')
 loadnet = None
 if args.has_cuda:
-    loadnet = torch.load(args.filename, map_location=device)
+    loadnet = torch.load(args.filename, map_location=device, weights_only=False)
 else:
-    loadnet = torch.load(args.filename)
+    loadnet = torch.load(args.filename, weights_only=False)
 
 if 'params_ema' in loadnet:
     loadnet = loadnet['params_ema']
