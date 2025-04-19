@@ -4,3 +4,4 @@ basicsr==1.4.2
 coremltools==6.2
 psutil==5.9.0
 chardet==4.0.0
+numpy==1.21.0
