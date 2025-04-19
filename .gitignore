@@ -5,6 +5,9 @@
 *.mlpackage
 *.mlmodelc
 
+torch_models/*
+!torch_models/.gitkeep
+
 # General
 .DS_Store
 .AppleDouble

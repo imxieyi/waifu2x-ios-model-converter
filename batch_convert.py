@@ -76,7 +76,7 @@ for model in known_models_yaml['models']:
         sys.stdout.flush()
     process.communicate()
     if process.returncode != 0:
-        break
+        raise RuntimeError(f"Process return code is {process.returncode}")
     num_converted += 1
 
 if num_converted > 0:
