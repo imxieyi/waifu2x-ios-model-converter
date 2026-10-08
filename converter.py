@@ -28,7 +28,7 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('filename')
 required_args = parser.add_argument_group('required')
-required_args.add_argument('--type', choices=['esrgan_old', 'esrgan_old_lite', 'real_esrgan', 'real_esrgan_compact', 'esrgan_plus'], required=True, help='Type of the model')
+required_args.add_argument('--type', choices=['esrgan_old', 'esrgan_old_lite', 'real_esrgan', 'real_esrgan_compact', 'esrgan_plus', 'spandrel'], required=True, help='Type of the model; spandrel detects ESRGAN, DAT, FDAT, HAT and SPAN from .pth/.safetensors weights')
 required_args.add_argument('--name', type=str, required=True, help='Name of the model')
 required_args.add_argument('--scale', type=int, required=True, help='Scale factor of the model')
 required_args.add_argument('--out-dir', type=str, required=True, help='Output directory')
@@ -47,6 +47,7 @@ optional_args.add_argument('--author', type=str, required=False, help='Author of
 optional_args.add_argument('--license', type=str, required=False, help='License of the model, supports Markdown')
 optional_args.add_argument('--info-md', type=str, required=False, help='Use custom info.md instead of individual flags')
 optional_args.add_argument('--no-delete-mlmodel', action='store_true', help='Don\'t delete the intermediate Core ML model file')
+optional_args.add_argument('--float32', action='store_true', help='Use float32 intermediate precision; automatic for Spandrel DAT, HAT, ESRGAN and 4x FDAT')
 args = parser.parse_args()
 
 logger = logging.getLogger('converter')
@@ -73,6 +74,7 @@ os.makedirs(args.out_dir, exist_ok=True)
 
 from collections import OrderedDict
 import coremltools as ct
+import numpy as np
 import torch
 
 torch_model = None
@@ -116,7 +118,23 @@ if args.num_blocks is not None:
 if args.num_convs is not None:
     num_convs = args.num_convs
 
-if args.type == 'esrgan_old' or args.type == 'esrgan_old_lite':
+if args.type == 'spandrel':
+    from model_loader import load_spandrel_model
+    if args.shuffle_factor or args.monochrome:
+        parser.error('spandrel detects pixel unshuffle and monochrome channels automatically')
+    torch_model, descriptor = load_spandrel_model(args.filename)
+    logger.info('Detected %s, %dx, %d input channels', descriptor.architecture.id, descriptor.scale, descriptor.input_channels)
+    if descriptor.scale != args.scale:
+        parser.error(f'Expected scale {args.scale}, but checkpoint is {descriptor.scale}x')
+    if not descriptor.size_requirements.check(args.input_size, args.input_size):
+        parser.error(f'Input size does not meet model requirements: {descriptor.size_requirements}')
+    # DAT's channel-attention reductions overflow in float16 on these weights.
+    # HAT and 4x FDAT avoid excessive ANE graph placement during import. The JaNai RRDB
+    # weights also need float32 to avoid large errors on isolated edge pixels.
+    if descriptor.architecture.id in {'DAT', 'HAT', 'ESRGAN'} or (descriptor.architecture.id == 'FDAT' and descriptor.scale >= 4):
+        args.float32 = True
+        logger.info('Using float32 intermediate precision for %s', descriptor.architecture.id)
+elif args.type == 'esrgan_old' or args.type == 'esrgan_old_lite':
     from esrgan_old import architecture
     torch_model = architecture.RRDB_Net(
         in_channels, out_channels, num_features, num_blocks, gc=32, upscale=model_scale, norm_type=None,
@@ -136,14 +154,16 @@ else:
 
 logger.info('Loading weights')
 loadnet = None
-if args.has_cuda:
+if args.type == 'spandrel':
+    pass  # ModelLoader already loaded the checkpoint strictly on CPU.
+elif args.has_cuda:
     loadnet = torch.load(args.filename, map_location=device, weights_only=False)
 else:
     loadnet = torch.load(args.filename, weights_only=False)
 
-if 'params_ema' in loadnet:
+if loadnet is not None and 'params_ema' in loadnet:
     loadnet = loadnet['params_ema']
-elif 'params' in loadnet:
+elif loadnet is not None and 'params' in loadnet:
     loadnet = loadnet['params']
 
 def mod2normal(state_dict):
@@ -180,7 +200,8 @@ def mod2normal(state_dict):
 
 
 try:
-    torch_model.load_state_dict(loadnet, strict=True)
+    if loadnet is not None:
+        torch_model.load_state_dict(loadnet, strict=True)
 except Exception as e:
     if 'conv_first.weight' in loadnet:
         loadnet = mod2normal(loadnet)
@@ -215,7 +236,7 @@ if args.shuffle_factor:
         pad_h = (multiple - h % multiple) % multiple
         pad_w = (multiple - w % multiple) % multiple
         if pad_h or pad_w:
-            return nn.pad(tensor, (0, pad_w, 0, pad_h), mode, value)
+            return torch.nn.functional.pad(tensor, (0, pad_w, 0, pad_h), mode, value)
         return tensor
 
     class ShuffleWrapper(nn.Module):
@@ -227,17 +248,24 @@ if args.shuffle_factor:
             x = pad_to_multiple(x, args.shuffle_factor, mode="reflect")
             x = torch.pixel_unshuffle(x, downscale_factor=args.shuffle_factor)
             x = self.model(x)
-            return x[:, :, : h * model_scale, : w * model_scale]
+            return x[:, :, : h * args.scale, : w * args.scale]
     torch_model = ShuffleWrapper(torch_model)
 
 logger.info('Tracing model, will take a long time and a lot of RAM')
 torch_model.eval()
 torch_model = torch_model.to(device)
-example_input = torch.zeros(1, 3, 16, 16)
+# Attention masks and window layouts depend on the traced spatial dimensions.
+# A tiny example produces an incorrect graph when later exported at a larger size.
+example_input = torch.rand(1, 3, args.input_size, args.input_size)
 example_input = example_input.to(device)
-traced_model = torch.jit.trace(torch_model, example_input)
-out = traced_model(example_input)
+with torch.no_grad():
+    traced_model = torch.jit.trace(torch_model, example_input, check_trace=False)
+    out = traced_model(example_input)
 logger.info('Successfully traced model')
+if tuple(out.shape) != (1, 3, args.input_size * args.scale, args.input_size * args.scale):
+    raise ValueError(f'Unexpected output shape: {tuple(out.shape)}')
+if not torch.isfinite(out).all():
+    raise ValueError('Model produced NaN or infinite output')
 
 input_size = example_input.shape[-1]
 output_size = out.shape[-1]
@@ -250,12 +278,15 @@ input_shape = [1, 3, args.input_size, args.input_size]
 output_size = args.input_size * args.scale
 output_shape = [1, 3, output_size, output_size]
 minimum_deployment_target = None
-if args.shuffle_factor:
+if args.shuffle_factor or args.type == 'spandrel':
     minimum_deployment_target = ct.target.iOS16
 model = ct.convert(
     traced_model,
     convert_to="mlprogram",
-    inputs=[ct.TensorType(shape=input_shape)],
+    inputs=[ct.TensorType(name='input', shape=input_shape, dtype=np.float32)],
+    outputs=[ct.TensorType(name='output', dtype=np.float32)],
+    skip_model_load=True,
+    compute_precision=ct.precision.FLOAT32 if args.float32 else ct.precision.FLOAT16,
     minimum_deployment_target=minimum_deployment_target
 )
 model_name = args.filename.split('/')[-1].split('.')[0]
@@ -276,7 +307,7 @@ manifest = {
     "type": "coreml",
     "subModels": {
         "main": {
-            "file": mlmodel_file,
+            "file": os.path.basename(mlmodel_file),
             "inputName": input_name,
             "outputName": output_name
         }
@@ -331,14 +362,14 @@ def add_folder_to_zip(folder, zipfile):
     for folderName, subfolders, filenames in os.walk(folder):
         for filename in filenames:
             filePath = os.path.join(folderName, filename)
-            zipfile.write(filePath, filePath)
+            zipfile.write(filePath, os.path.relpath(filePath, os.path.dirname(folder)))
 
 zip_file = args.out_dir + '/' + args.name + '.wifm'
 with zipfile.ZipFile(zip_file, 'w', compression=zipfile.ZIP_DEFLATED) as modelzip:
     modelzip.writestr('manifest.json', json.dumps(manifest))
     modelzip.writestr('info.md', info_md)
     if os.path.isfile(mlmodel_file):
-        modelzip.write(mlmodel_file)
+        modelzip.write(mlmodel_file, os.path.basename(mlmodel_file))
     else:
         add_folder_to_zip(mlmodel_file, modelzip)
 

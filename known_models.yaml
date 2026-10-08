@@ -622,3 +622,350 @@ models:
   author: "[Nmkd](https://openmodeldb.info/users/nmkd)"
   source: "[OpenModelDB](https://openmodeldb.info/models/4x-NMKD-Superscale)"
   license: "[WTFPL](http://www.wtfpl.net/)"
+# IllustrationJaNai V3 and MangaJaNai V1 original release checkpoints.
+- name: IllustrationJaNai V3denoise FDAT M 2x
+  type: spandrel
+  file: ./torch_models/2x_IllustrationJaNai_V3denoise_FDAT_M_unshuffle_30k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3denoise.zip
+  sha256: 960c9555f62fb19113e8d808bde5a54b64181b1db417bca1bbda26516e48f108
+  scale: 2
+  description: Color illustration upscaler, denoise variant. Cleans printed halftone
+    noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3denoise SPAN S 2x
+  type: spandrel
+  file: ./torch_models/2x_IllustrationJaNai_V3denoise_SPAN_S_30k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3denoise.zip
+  sha256: d709bfb8f7cefcd0bc0d2dce485208dcda165b2559eacec66296b53d486f0951
+  scale: 2
+  description: Color illustration upscaler, denoise variant. Cleans printed halftone
+    noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3detail FDAT M 2x
+  type: spandrel
+  file: ./torch_models/2x_IllustrationJaNai_V3detail_FDAT_M_unshuffle_40k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: 8ff2ba0b970e6939f3711077f5260fcded16b8388a939a27f153c687ff5da3e0
+  scale: 2
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3detail SPAN S 2x
+  type: spandrel
+  file: ./torch_models/2x_IllustrationJaNai_V3detail_SPAN_S_40k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: 6b10bd97260ebcf639db9a961121a22c97c4f8807d43ec8a1157f3ef24b18f46
+  scale: 2
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: MangaJaNai V1 1200p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1200p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 43b784f674bdbf89886a62a64cd5f8d8df92caf4d861bdf4d47dad249ede0267
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1200 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1300p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1300p_V1_ESRGAN_75k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 15ca3c0f75f97f7bf52065bf7c9b8d602de94ce9e3b078ac58793855eed18589
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1300 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1400p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1400p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: a940ad8ebcf6bea5580f2f59df67deb009f054c9b87dbbc58c2e452722f34858
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1400 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1500p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1500p_V1_ESRGAN_90k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: d91f2d247fa61144c1634a2ba46926acd3956ae90d281a5bed6655f8364a5b2c
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1500 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1600p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1600p_V1_ESRGAN_90k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 6f5923f812dbc5d6aeed727635a21e74cacddce595afe6135cbd95078f6eee44
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1600 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1920p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_1920p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 1ad4aa6f64684baa430da1bb472489bff2a02473b14859015884a3852339c005
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 1920 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 2048p 2x
+  type: spandrel
+  file: ./torch_models/2x_MangaJaNai_2048p_V1_ESRGAN_95k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 146cd009b9589203a8444fe0aa7195709bb5b9fdeaca3808b7fbbd5538f94c41
+  scale: 2
+  description: Black and white digital manga, optimized for pages near 2048 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: IllustrationJaNai V3denoise DAT2 4x
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3denoise_DAT2_27k_bf16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3denoise.zip
+  sha256: 430d5e58053be88d250b6ee2c1016a19f919baafb9b6bda0f45c14b54453fb12
+  scale: 4
+  description: Color illustration upscaler, denoise variant. Cleans printed halftone
+    noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: IllustrationJaNai V3denoise FDAT M 4x
+  float32: true
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3denoise_FDAT_M_47k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3denoise.zip
+  sha256: a15dfc813b1f1138ca3da06c6cbf530dd1acbff0ba0d4eb97b5c021f3facbf6c
+  scale: 4
+  description: Color illustration upscaler, denoise variant. Cleans printed halftone
+    noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3denoise FDAT XL 4x
+  float32: true
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3denoise_FDAT_XL_32k_bf16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3denoise.zip
+  sha256: 3099fd76f427ee29513aa91dda02b9c1a54e0f7fdd08b653175655de798562f7
+  scale: 4
+  description: Color illustration upscaler, denoise variant. Cleans printed halftone
+    noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3detail DAT2 4x
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3detail_DAT2_28k_bf16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: eb9faf6a37de81406765e0c99e76ad7dafe67e4877f32e186085ac277a0e6181
+  scale: 4
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: IllustrationJaNai V3detail FDAT M 4x
+  float32: true
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3detail_FDAT_M_40k_fp16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: 87badd2462ec4fe9a4d6a1e971d27cabb17540961ac588a534a7f6e0b9e135cd
+  scale: 4
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3detail FDAT XL 4x
+  float32: true
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3detail_FDAT_XL_27k_bf16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: fbafec1f5a126c251de8a21e177e5a710ba2e75c7fd88fe989eb8df0508790c9
+  scale: 4
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+- name: IllustrationJaNai V3detail HAT L 4x
+  type: spandrel
+  file: ./torch_models/4x_IllustrationJaNai_V3detail_HAT_L_28k_bf16.safetensors
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/3.0.0/IllustrationJaNai_V3detail.zip
+  sha256: 38c00c9ff871ae292617ae1127edc150f81c4e0f8f98685e48ff9c9cd87fba3b
+  scale: 4
+  description: Color illustration upscaler, detail variant. Preserves detail and texture
+    without cleaning halftone noise.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 3.0.0](https://github.com/the-database/MangaJaNai/releases/tag/3.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1200p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1200p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 6e3a8d21533b731eb3d8eaac1a09cf56290fa08faf8473cbe3debded9ab1ebe1
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1200 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1300p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1300p_V1_ESRGAN_75k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: eacf8210543446f3573d4ea1625f6fc11a3b2a5e18b38978873944be146417a8
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1300 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1400p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1400p_V1_ESRGAN_105k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: d77f977a6c6c4bf855dae55f0e9fad6ac2823fa8b2ef883b50e525369fde6a74
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1400 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1500p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1500p_V1_ESRGAN_105k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: 5e5174b60316e9abb7875e6d2db208fec4ffc34f3d09fa7f0e0f6476f9d31687
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1500 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1600p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1600p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: c126ec8d4b7434d8f6a43d24bec1f56d343104ab8a86b5e01d5d25be6b5244c0
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1600 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 1920p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_1920p_V1_ESRGAN_105k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: d469e96e590a25a86037760b26d51405c77759a55b0966b15dc76b609f72f20b
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 1920 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true
+- name: MangaJaNai V1 2048p 4x
+  type: spandrel
+  file: ./torch_models/4x_MangaJaNai_2048p_V1_ESRGAN_70k.pth
+  sourceLink: https://github.com/the-database/MangaJaNai/releases/download/1.0.0/MangaJaNai_V1_ModelsOnly.zip
+  sha256: f70e08c60da372b7207e7348486ea6b498ea8dea6246bb717530a4d45c955b9b
+  scale: 4
+  description: Black and white digital manga, optimized for pages near 2048 pixels
+    tall.
+  author: '[the-database](https://github.com/the-database)'
+  source: '[MangaJaNai release 1.0.0](https://github.com/the-database/MangaJaNai/releases/tag/1.0.0)'
+  license: '[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+  input-size: 128
+  shrink-size: 20
+  float32: true

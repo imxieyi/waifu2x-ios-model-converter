@@ -1,0 +1,10 @@
+# Python 3.10 or 3.11; isolated environment for modern .safetensors models.
+torch==2.5.1
+torchvision==0.20.1
+coremltools==8.3.0
+spandrel==0.4.2
+numpy==1.26.4
+PyYAML>=6.0,<7
+Pillow>=10,<13
+psutil>=5.9,<8
+chardet>=4,<8

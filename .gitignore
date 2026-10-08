@@ -8,6 +8,12 @@
 torch_models/*
 !torch_models/.gitkeep
 
+.venv/
+.build/
+downloads/
+validation/
+__pycache__/
+
 # General
 .DS_Store
 .AppleDouble

@@ -14,8 +14,10 @@
 # limitations under the License.
 
 import hashlib
+import argparse
 import logging
 import os
+import re
 import subprocess
 import sys
 import yaml
@@ -25,18 +27,25 @@ OUT_DIR = 'out_models'
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
+parser = argparse.ArgumentParser(description='Convert downloaded, hash-verified known models')
+parser.add_argument('--filter', help='Only convert model names matching this regular expression')
+parser.add_argument('--force', action='store_true', help='Reconvert matching models even if output files already exist')
+args = parser.parse_args()
+
 known_models_yaml = None
 with open('known_models.yaml', 'r') as f:
-    known_models_yaml = yaml.load(f.read(), Loader=yaml.Loader)
+    known_models_yaml = yaml.safe_load(f)
 
 num_converted = 0
 for model in known_models_yaml['models']:
+    if args.filter and not re.search(args.filter, model['name']):
+        continue
     file = model['file']
     if not os.path.exists(file):
         continue
     name = model['name']
     out_file = OUT_DIR + '/' + name + '.wifm'
-    if os.path.exists(out_file):
+    if os.path.exists(out_file) and not args.force:
         logger.warning('Skipping already converted model %s', name)
         continue
     logger.info('Converting model: %s', name)
@@ -46,7 +55,7 @@ for model in known_models_yaml['models']:
             logger.error('Unexpected hash for file %s, skipping', file)
             continue
     command = [
-        'python', 'converter.py',
+        sys.executable, 'converter.py',
         '--type', model['type'],
         '--name', name,
         '--scale', str(model['scale']),
@@ -68,6 +77,12 @@ for model in known_models_yaml['models']:
         command += ['--num-convs', str(model['convs'])]
     if 'shuffle-factor' in model:
         command += ['--shuffle-factor', str(model['shuffle-factor'])]
+    if 'input-size' in model:
+        command += ['--input-size', str(model['input-size'])]
+    if 'shrink-size' in model:
+        command += ['--shrink-size', str(model['shrink-size'])]
+    if model.get('float32'):
+        command += ['--float32']
     command += [file]
     logger.debug('Command: %s', command)
     process = subprocess.Popen(command, stdout=subprocess.PIPE)

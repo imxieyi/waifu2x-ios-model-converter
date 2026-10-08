@@ -28,6 +28,7 @@ You don't have to use this tool to create custom models. See [SPECS.md](./SPECS.
 - [ESRGAN ("old arch")](https://github.com/xinntao/ESRGAN/tree/old-arch), including lite version
 - [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN), including compact version (SRVGGNetCompact)
 - [ESRGAN+ (nESRGAN+)](https://github.com/ncarraz/ESRGANplus)
+- ESRGAN, DAT/DAT2, FDAT (including pixel unshuffle), HAT, and SPAN via [Spandrel](https://github.com/chaiNNer-org/spandrel), using `--type spandrel`
 
 ## System Requirements
 - macOS or x86_64 Linux
@@ -44,6 +45,8 @@ cd waifu2x-ios-model-converter
 pip install -r requirements.txt
 ```
 
+For IllustrationJaNai V3 and MangaJaNai V1, use Python 3.10 or 3.11 and install [requirements-janai.txt](./requirements-janai.txt) instead of `requirements.txt`.
+
 ## Usages
 
 ### Single Model Conversion
@@ -53,7 +56,9 @@ python converter.py --help
 ```
 
 ### Batch Conversion of Tested Models
-There are some known working models (from [upscale.wiki](https://upscale.wiki/wiki/Model_Database)) defined in [known_models.yaml](./known_models.yaml). To convert a subset or all of them, place downloaded `.pth` files under [torch_models](./torch_models). Then you can run `python batch_convert.py` to convert them. Resulting models will be placed under [out_models](./out_models)
+There are some known working models (from [upscale.wiki](https://upscale.wiki/wiki/Model_Database) and [MangaJaNai releases](https://github.com/the-database/MangaJaNai/releases)) defined in [known_models.yaml](./known_models.yaml). To convert a subset or all of them, place downloaded `.pth` or `.safetensors` files under [torch_models](./torch_models). Then you can run `python batch_convert.py` to convert them. Resulting models will be placed under [out_models](./out_models)
+
+To convert only IllustrationJaNai V3 and MangaJaNai V1, run `python batch_convert.py --filter 'JaNai V[13]'`.
 
 If there is a model you have trouble converting, please create an issue so that it can be investigated. **There is no guarantee that your problem will be solved due to the complex nature of model conversion.** Note that models with a strict license for commercial use (GNU GPLv3, CC BY-NC 4.0, etc.) must be converted by yourself eventually.
 
